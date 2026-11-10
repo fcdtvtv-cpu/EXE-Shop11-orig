@@ -1,0 +1,9 @@
+# ==== ВПИШИ СВОИ ДАННЫЕ ====
+BOT_TOKEN = "9120340423:AAE5Ub1NHqWxHK4fllHqUugJ9GqyO7_VAww"
+ADMIN_ID = 8738748123
+SUPPORT_URL = "https://t.me/CodeitHelp"
+PLAYEROK_URL = "https://playerok.com/profile/yunogasaiip/products"
+KWORK_URL = "https://kwork.ru/user/neforqwax"
+# ===========================
+
+DB_PATH = "shop.db"
