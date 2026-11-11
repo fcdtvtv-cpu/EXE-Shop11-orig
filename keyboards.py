@@ -76,13 +76,10 @@ def link_kb(url: str) -> InlineKeyboardMarkup:
     ])
 
 rating_kb = InlineKeyboardMarkup(inline_keyboard=[
-    [InlineKeyboardButton(text=str(i), callback_data=f"rate:{i}") for i in range(0, 6)]
+    [InlineKeyboardButton(text=str(i), callback_data=f"rate:{i}") for i in range(0, 6)],
+    [InlineKeyboardButton(text="💸 Оформить возврат средств", callback_data="refund:bot")] # <--- ДОБАВИЛИ ЭТУ СТРОЧКУ
 ])
 refund_menu = InlineKeyboardMarkup(inline_keyboard=[
     [InlineKeyboardButton(text="🔄 Оформить возврат в боте", callback_data="refund:bot")],
     [InlineKeyboardButton(text="🛠 Возврат через техподдержку", callback_data="refund:support")],
     [InlineKeyboardButton(text="↩️ Назад", callback_data="back:main")]
-])
-rating_kb = InlineKeyboardMarkup(inline_keyboard=[
-    [InlineKeyboardButton(text=str(i), callback_data=f"rate:{i}") for i in range(0, 6)]
-])
