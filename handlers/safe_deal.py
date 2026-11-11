@@ -44,7 +44,10 @@ async def safe_gg(call: CallbackQuery):
 
 @router.callback_query(F.data == "back:main")
 async def back_main(call: CallbackQuery):
-    await call.message.edit_text("Выберите площадку:", reply_markup=safe_deal_kb)
+    try:
+        await call.message.edit_text("Выберите площадку:", reply_markup=safe_deal_kb)
+    except Exception:
+        await call.answer("Вы уже находитесь в этом меню 😉", show_alert=False)
 
 # --- админ: клиент оплатил ---
 @router.callback_query(F.data.startswith("paid:"))
