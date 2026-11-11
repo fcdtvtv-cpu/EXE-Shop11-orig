@@ -4,7 +4,7 @@ from aiogram.client.default import DefaultBotProperties
 from aiogram.enums import ParseMode
 from config import BOT_TOKEN
 from database import init_db
-from handlers import start, catalog, order, safe_deal, reviews, help
+from handlers import start, catalog, order, safe_deal, reviews, help, refund
 
 async def main():
     await init_db()
@@ -15,6 +15,7 @@ async def main():
     dp.include_router(order.router)
     dp.include_router(catalog.router)
     dp.include_router(safe_deal.router)
+    dp.include_router(refund.router)
     dp.include_router(reviews.router)
     dp.include_router(help.router)
 
