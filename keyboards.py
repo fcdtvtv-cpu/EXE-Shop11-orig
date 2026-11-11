@@ -8,6 +8,7 @@ main_menu = ReplyKeyboardMarkup(
         [KeyboardButton(text="🛒 Каталог товаров")],
         [KeyboardButton(text="📦 Заказать услугу")],
         [KeyboardButton(text="🔒 Безопасная сделка")],
+        [KeyboardButton(text="💸 Возврат средств")], # <--- ВОТ ЭТУ СТРОЧКУ ДОБАВЬ
         [KeyboardButton(text="⭐ Отзывы и сделки")],
         [KeyboardButton(text="🛠 Техподдержка")],
         [KeyboardButton(text="❓ Справка")],
