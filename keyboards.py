@@ -3,12 +3,13 @@ from aiogram.types import (
     InlineKeyboardMarkup, InlineKeyboardButton,
 )
 
+# --- Главное меню (внизу экрана) ---
 main_menu = ReplyKeyboardMarkup(
     keyboard=[
         [KeyboardButton(text="🛒 Каталог товаров")],
         [KeyboardButton(text="📦 Заказать услугу")],
         [KeyboardButton(text="🔒 Безопасная сделка")],
-        [KeyboardButton(text="💸 Возврат средств")], # <--- ВОТ ЭТУ СТРОЧКУ ДОБАВЬ
+        [KeyboardButton(text="💸 Возврат средств")],
         [KeyboardButton(text="⭐ Отзывы и сделки")],
         [KeyboardButton(text="🛠 Техподдержка")],
         [KeyboardButton(text="❓ Справка")],
@@ -16,6 +17,7 @@ main_menu = ReplyKeyboardMarkup(
     resize_keyboard=True,
 )
 
+# --- Категории каталога ---
 categories = InlineKeyboardMarkup(inline_keyboard=[
     [InlineKeyboardButton(text="🎮 Игры", callback_data="cat:games")],
     [InlineKeyboardButton(text="💻 IT-разработка", callback_data="cat:it")],
@@ -24,7 +26,7 @@ categories = InlineKeyboardMarkup(inline_keyboard=[
     [InlineKeyboardButton(text="⚙️ Макросы / автоматизация", callback_data="cat:macros")],
 ])
 
-# === ЗАМЕНИ ТОВАРЫ ПОЗЖЕ ===
+# --- Товары (пока заглушки, потом заменишь) ---
 PRODUCTS = {
     "games": [
         ("Плей рок / GG Sell — товары", "games:1"),
@@ -49,12 +51,14 @@ PRODUCTS = {
     ],
 }
 
+# --- Генератор кнопок для товаров ---
 def products_kb(cat: str) -> InlineKeyboardMarkup:
     rows = [[InlineKeyboardButton(text=name, callback_data=f"prod:{cb}")]
             for name, cb in PRODUCTS.get(cat, [])]
     rows.append([InlineKeyboardButton(text="↩️ Назад", callback_data="back:cats")])
     return InlineKeyboardMarkup(inline_keyboard=rows)
 
+# --- Кнопки действий под конкретным товаром ---
 def product_actions_kb(cb: str) -> InlineKeyboardMarkup:
     return InlineKeyboardMarkup(inline_keyboard=[
         [InlineKeyboardButton(text="📝 Оставить заявку", callback_data=f"order:{cb}")],
@@ -62,6 +66,7 @@ def product_actions_kb(cb: str) -> InlineKeyboardMarkup:
         [InlineKeyboardButton(text="↩️ Назад", callback_data="back:cats")],
     ])
 
+# --- Меню безопасной сделки ---
 safe_deal_kb = InlineKeyboardMarkup(inline_keyboard=[
     [InlineKeyboardButton(text="🔹 Playerok (Play Rock)", callback_data="safe:playerok")],
     [InlineKeyboardButton(text="🔹 Kwork", callback_data="safe:kwork")],
@@ -69,17 +74,22 @@ safe_deal_kb = InlineKeyboardMarkup(inline_keyboard=[
     [InlineKeyboardButton(text="↩️ Назад", callback_data="back:main")],
 ])
 
+# --- Кнопка перехода на сайт ---
 def link_kb(url: str) -> InlineKeyboardMarkup:
     return InlineKeyboardMarkup(inline_keyboard=[
         [InlineKeyboardButton(text="🌐 Перейти на сайт", url=url)],
         [InlineKeyboardButton(text="↩️ Назад", callback_data="safe:menu")],
     ])
 
-rating_kb = InlineKeyboardMarkup(inline_keyboard=[
-    [InlineKeyboardButton(text=str(i), callback_data=f"rate:{i}") for i in range(0, 6)],
-    [InlineKeyboardButton(text="💸 Оформить возврат средств", callback_data="refund:bot")] # <--- ДОБАВИЛИ ЭТУ СТРОЧКУ
-])
+# --- Меню возврата средств ---
 refund_menu = InlineKeyboardMarkup(inline_keyboard=[
     [InlineKeyboardButton(text="🔄 Оформить возврат в боте", callback_data="refund:bot")],
     [InlineKeyboardButton(text="🛠 Возврат через техподдержку", callback_data="refund:support")],
     [InlineKeyboardButton(text="↩️ Назад", callback_data="back:main")]
+])
+
+# --- Оценка + кнопка возврата (приходит после оплаты) ---
+rating_kb = InlineKeyboardMarkup(inline_keyboard=[
+    [InlineKeyboardButton(text=str(i), callback_data=f"rate:{i}") for i in range(0, 6)],
+    [InlineKeyboardButton(text="💸 Оформить возврат средств", callback_data="refund:bot")]
+])
