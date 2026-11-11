@@ -8,6 +8,8 @@ router = Router()
 @router.message(Command("start"))
 async def cmd_start(message: Message):
     await message.answer(
-        "👋 Добро пожаловать в магазин!\n\nВыберите раздел в меню ниже 👇",
+        "👋 Добро пожаловать в Exe Shop!\n\n"
+        "Здесь вы можете приобрести цифровые товары и услуги.\n"
+        "Выберите нужный раздел в меню ниже 👇",
         reply_markup=main_menu,
     )
